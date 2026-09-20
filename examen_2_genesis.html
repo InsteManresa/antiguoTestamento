@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 2 – Génesis</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  textarea{max-width:100%;}
+  .lista-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 30px;
+  }
+  .lista-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .lista-item span{
+    min-width:26px;
+    font-weight:bold;
+    color:var(--azul);
+  }
+  .bosquejo-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .bosquejo-fila input[type="text"]{max-width:90px;text-align:center;}
+  .bosquejo-fila input.titulo{max-width:220px;text-align:left;}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .lista-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>El Discipulado 1</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 2: Génesis (2023-2024)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>Preguntas 1–8</legend>
+
+      <article>
+        <label>1. La frase clave que provee la unidad del libro de Génesis es</label>
+        <select name="p1">
+          <option value="">Selecciona</option>
+          <option value="A">A. “Estas son las generaciones”</option>
+          <option value="B">B. “Este es el comienzo de”</option>
+          <option value="C">C. “En el principio”</option>
+        </select>
+      </article>
+
+      <article>
+        <label>2. Se puede caracterizar Génesis 1-11 de la siguiente manera:</label>
+        <select name="p2">
+          <option value="">Selecciona</option>
+          <option value="A">A. Es la verdadera historia de la antigüedad pero no nos proporciona información exacta acerca de las fechas de dicha historia.</option>
+          <option value="B">B. La primera parte de Génesis no puede ser interpretada como historia.</option>
+          <option value="C">C. La ciencia moderna ha comprobado que no podemos interpretar literalmente los primeros capítulos de Génesis.</option>
+          <option value="D">D. Los primeros capítulos de Génesis contienen la leyenda hebrea del comienzo del universo.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>3. ¿Cuál de las siguientes respuestas describe (en su orden bíblica) la historia de Gén. 12-50?</label>
+        <select name="p3">
+          <option value="">Selecciona</option>
+          <option value="A">A. Adán, Enoc, Noé y Abraham</option>
+          <option value="B">B. Adán, Abraham, Isaac, Jacob</option>
+          <option value="C">C. Abraham, Isaac, Esaú, Jacob</option>
+          <option value="D">D. Abraham, Isaac, Jacob, José</option>
+        </select>
+      </article>
+
+      <article>
+        <label>4. ¿Cuáles son los cuatro acontecimientos importantes de la primera parte de Génesis?</label>
+        <select name="p4">
+          <option value="">Selecciona</option>
+          <option value="A">A. La creación, la caída, el diluvio, la torre de Babel</option>
+          <option value="B">B. La creación del hombre, el nacimiento de Set, el comienzo de la raza hebrea, el llamamiento de Abraham.</option>
+          <option value="C">C. La creación, la caída, el diluvio, el comienzo de la raza hebrea.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>5. La palabra hebrea que significa “crear de la nada” (bara’) se refiere a</label>
+        <select name="p5">
+          <option value="">Selecciona</option>
+          <option value="A">A. los diez comienzos descritos en el libro de Génesis.</option>
+          <option value="B">B. la obra creadora de Dios; o sea, lo que sólo Dios puede hacer.</option>
+          <option value="C">C. la obra de Dios de poner orden en el universo.</option>
+          <option value="D">D. los seis días de la creación de Génesis 1.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>6. La primera promesa de la redención en la Biblia se encuentra en:</label>
+        <select name="p6">
+          <option value="">Selecciona</option>
+          <option value="A">A. Génesis 1:26-27</option>
+          <option value="B">B. Génesis 2:24</option>
+          <option value="C">C. Génesis 3:15</option>
+          <option value="D">D. Génesis 15:18</option>
+        </select>
+      </article>
+
+      <article>
+        <label>7. ¿Quién fue padre de las doce tribus?</label>
+        <select name="p7">
+          <option value="">Selecciona</option>
+          <option value="A">A. Abraham</option>
+          <option value="B">B. Isaac</option>
+          <option value="C">C. Jacob</option>
+          <option value="D">D. José</option>
+        </select>
+      </article>
+
+      <article>
+        <label>8. El nombre hebreo de Génesis significa:</label>
+        <select name="p8">
+          <option value="">Selecciona</option>
+          <option value="A">A. “Los comienzos”</option>
+          <option value="B">B. “En el principio”</option>
+          <option value="C">C. “Las generaciones”</option>
+          <option value="D">D. “Tora”</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>9–11. (3 puntos) Identifica los tres pactos de gracia que se encuentran en Génesis</legend>
+      <div class="lista-grid" id="pactos-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>12–16. (5 puntos) Identifica por lo menos 5 “comienzos” que se encuentran en Génesis 1-11</legend>
+      <div class="lista-grid" id="comienzos-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>17. Escribe Génesis 1:1</legend>
+      <textarea name="p17" rows="2" placeholder="Escribe el versículo completo..."></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>18–21. (4 puntos) Escribe el bosquejo de Génesis</legend>
+      <div class="bosquejo-fila">
+        Génesis <input type="text" name="p18"> al <input type="text" name="p19">:
+        <input type="text" class="titulo" placeholder="(título de esta sección)">
+      </div>
+      <div class="bosquejo-fila">
+        Génesis <input type="text" name="p20"> al <input type="text" name="p21">:
+        <input type="text" class="titulo" placeholder="(título de esta sección)">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p22" style="width:auto;display:inline-block;"> 22. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p23" style="width:auto;display:inline-block;"> 23. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen2-genesis"; // guarda si ya fue presentado
+
+/* ================== DATOS: 9-11 PACTOS ================== */
+const pactosAceptados = ["adam", "noe", "abraham"]; // Adámico, Noético, Abrahámico
+const gridPactos = document.getElementById("pactos-grid");
+for(let i=9;i<=11;i++){
+  const div = document.createElement("div");
+  div.className = "lista-item";
+  div.innerHTML = `<span>${i}.</span><input type="text" name="p${i}" placeholder="Pacto">`;
+  gridPactos.appendChild(div);
+}
+
+/* ================== DATOS: 12-16 COMIENZOS ================== */
+const comienzosAceptados = [
+  "cielos y tierra",
+  "pecado lenguas raza hebrea",
+  "vida flora fauna",
+  "revelacion redentora",
+  "raza humana familia humana civilizacion naciones"
+];
+const gridComienzos = document.getElementById("comienzos-grid");
+for(let i=12;i<=16;i++){
+  const div = document.createElement("div");
+  div.className = "lista-item";
+  div.innerHTML = `<span>${i}.</span><input type="text" name="p${i}" placeholder="Comienzo">`;
+  gridComienzos.appendChild(div);
+}
+
+/* ================== RESPUESTAS CORRECTAS (1-8) ================== */
+const correctasMC = { p1:"C", p2:"A", p3:"D", p4:"A", p5:"B", p6:"C", p7:"C", p8:"B" };
+
+/* ================== BOSQUEJO (18-21) ================== */
+const correctasBosquejo = { p18:"1", p19:"11", p20:"12", p21:"50" };
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen2-genesis');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 23;
+
+  // Preguntas 1-8
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 9-11 Pactos (cualquier orden, sin repetir el mismo pacto dos veces)
+  const pactosUsados = new Set();
+  for(let i=9;i<=11;i++){
+    const el = form.elements[`p${i}`];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    const match = pactosAceptados.find(p => !pactosUsados.has(p) && val.includes(p));
+    if(match){ puntos++; pactosUsados.add(match); el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  }
+
+  // 12-16 Comienzos (cualquier orden, sin repetir la misma categoría)
+  const comienzosUsados = new Set();
+  for(let i=12;i<=16;i++){
+    const el = form.elements[`p${i}`];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    let acierto = false;
+    comienzosAceptados.forEach((frase, idx)=>{
+      if(acierto || comienzosUsados.has(idx)) return;
+      const palabras = frase.split(" ");
+      if(contieneAlguna(val, palabras)){
+        comienzosUsados.add(idx);
+        acierto = true;
+      }
+    });
+    if(acierto){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  }
+
+  // 17 Versículo (Génesis 1:1)
+  const elVerso = form.elements["p17"];
+  elVerso.classList.remove("correcta","incorrecta");
+  const verso = normalizar(elVerso.value);
+  if(verso.includes("principio") && verso.includes("cielos") && verso.includes("tierra")){
+    puntos++; elVerso.classList.add("correcta");
+  } else {
+    elVerso.classList.add("incorrecta");
+  }
+
+  // 18-21 Bosquejo
+  Object.keys(correctasBosquejo).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(normalizar(el.value) === correctasBosquejo[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Confirmaciones 22-23
+  ["p22","p23"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  // Bloquear el examen: solo puede presentarse una vez
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>

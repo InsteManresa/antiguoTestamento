@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 1 – Antiguo Testamento</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:420px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  textarea{max-width:100%;}
+  .matching-grid, .libros-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 30px;
+  }
+  .matching-item, .libro-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .matching-item span, .libro-item span{
+    min-width:26px;
+    font-weight:bold;
+    color:var(--azul);
+  }
+  .matching-item select{max-width:220px;}
+  .libro-item input{max-width:220px;}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  .categoria-titulo{
+    font-weight:bold;
+    margin:10px 0 6px;
+    color:var(--azul);
+    border-bottom:1px dashed #bbb;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .matching-grid, .libros-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>El Discipulado 1</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 1: Orientación</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>Preguntas 1–6</legend>
+
+      <article>
+        <label>1. ¿Cuánto tiempo transcurrió en la composición del Antiguo Testamento?</label>
+        <select name="p1">
+          <option value="">Selecciona</option>
+          <option value="A">A. 400 años</option>
+          <option value="B">B. 750 años</option>
+          <option value="C">C. 1000 años</option>
+          <option value="D">D. No se sabe</option>
+        </select>
+      </article>
+
+      <article>
+        <label>2. ¿Cuál era el idioma original del Antiguo Testamento?</label>
+        <select name="p2">
+          <option value="">Selecciona</option>
+          <option value="A">A. El griego</option>
+          <option value="B">B. El caldeo</option>
+          <option value="C">C. El hebreo</option>
+        </select>
+      </article>
+
+      <article>
+        <label>3. ¿Cuántos años abarca la historia del Antiguo Testamento?</label>
+        <select name="p3">
+          <option value="">Selecciona</option>
+          <option value="A">A. 16 siglos más la edad prehistórica</option>
+          <option value="B">B. 12 siglos más la edad prehistórica</option>
+          <option value="C">C. 4 siglos en total</option>
+          <option value="D">D. 6 siglos en total</option>
+        </select>
+      </article>
+
+      <article>
+        <label>4. ¿Cuánto del Antiguo Testamento está escrito en forma poética?</label>
+        <select name="p4">
+          <option value="">Selecciona</option>
+          <option value="A">A. La tercera parte</option>
+          <option value="B">B. La mitad</option>
+          <option value="C">C. La cuarta parte</option>
+          <option value="D">D. La quinta parte</option>
+        </select>
+      </article>
+
+      <article>
+        <label>5. ¿Cuáles son las divisiones hebreas del Antiguo Testamento?</label>
+        <select name="p5">
+          <option value="">Selecciona</option>
+          <option value="A">A. La ley y los profetas</option>
+          <option value="B">B. La ley, los libros históricos y los libros proféticos</option>
+          <option value="C">C. La ley, los profetas, los escritos (los salmos)</option>
+        </select>
+      </article>
+
+      <article>
+        <label>6. ¿Cuál de las frases siguientes no es un título de los primeros cinco libros del Antiguo Testamento?</label>
+        <select name="p6">
+          <option value="">Selecciona</option>
+          <option value="A">A. Tora</option>
+          <option value="B">B. Pentateuco</option>
+          <option value="C">C. Talmud</option>
+          <option value="D">D. Las cinco quintas partes de la ley</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>Relaciona (7–16): A. Génesis · B. Éxodo · C. Levítico · D. Números · E. Deuteronomio</legend>
+      <div class="matching-grid" id="matching-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>17–55. Escribe los nombres de los libros del Antiguo Testamento en orden bíblico</legend>
+      <div id="libros-container"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p56" style="width:auto;display:inline-block;"> 56. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p57" style="width:auto;display:inline-block;"> 57. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen1-orientacion"; // guarda si ya fue presentado
+
+/* ================== DATOS: MATCHING 7-16 ================== */
+const matching = [
+  {num:7,  texto:"libro de los comienzos", correcta:"A"},
+  {num:8,  texto:"las leyes sacerdotales", correcta:"C"},
+  {num:9,  texto:"es la “segunda ley”", correcta:"E"},
+  {num:10, texto:"“en el desierto”", correcta:"D"},
+  {num:11, texto:"el Tabernáculo", correcta:"B"},
+  {num:12, texto:"significa “una salida”", correcta:"B"},
+  {num:13, texto:"los tres discursos de Moisés", correcta:"E"},
+  {num:14, texto:"del Mte. Sinaí al Jordán", correcta:"D"},
+  {num:15, texto:"contiene dos pactos universales", correcta:"A"},
+  {num:16, texto:"escrito(s) por Moisés", correcta:"F"}
+];
+const opcionesMatching = [
+  {v:"A", t:"A. Génesis"},
+  {v:"B", t:"B. Éxodo"},
+  {v:"C", t:"C. Levítico"},
+  {v:"D", t:"D. Números"},
+  {v:"E", t:"E. Deuteronomio"},
+  {v:"F", t:"F. Todos"}
+];
+
+/* ================== DATOS: LIBROS 17-55 ================== */
+const categorias = [
+  {titulo:"Históricos — 5 antes de Canaán", libros:["Génesis","Éxodo","Levítico","Números","Deuteronomio"]},
+  {titulo:"Históricos — 9 en Canaán", libros:["Josué","Jueces","Rut","1 Samuel","2 Samuel","1 Reyes","2 Reyes","1 Crónicas","2 Crónicas"]},
+  {titulo:"Históricos — 3 después del exilio", libros:["Esdras","Nehemías","Ester"]},
+  {titulo:"Poéticos — 5 experiencia personal", libros:["Job","Salmos","Proverbios","Eclesiastés","Cantares"]},
+  {titulo:"Proféticos — 5 profetas mayores", libros:["Isaías","Jeremías","Lamentaciones","Ezequiel","Daniel"]},
+  {titulo:"Proféticos — 9 profetas menores antes del exilio", libros:["Oseas","Joel","Amós","Abdías","Jonás","Miqueas","Nahúm","Habacuc","Sofonías"]},
+  {titulo:"Proféticos — 3 profetas menores después del exilio", libros:["Hageo","Zacarías","Malaquías"]}
+];
+
+/* ================== CONSTRUIR FORMULARIO ================== */
+const gridMatching = document.getElementById("matching-grid");
+matching.forEach(item=>{
+  const div = document.createElement("div");
+  div.className = "matching-item";
+  const opts = opcionesMatching.map(o=>`<option value="${o.v}">${o.t}</option>`).join("");
+  div.innerHTML = `<span>${item.num}.</span>
+    <select name="p${item.num}"><option value="">--</option>${opts}</select>
+    <label style="font-weight:normal;margin:0;">${item.texto}</label>`;
+  gridMatching.appendChild(div);
+});
+
+const librosContainer = document.getElementById("libros-container");
+let contadorLibro = 17;
+const correctasLibros = {};
+categorias.forEach(cat=>{
+  const titulo = document.createElement("div");
+  titulo.className = "categoria-titulo";
+  titulo.textContent = cat.titulo;
+  librosContainer.appendChild(titulo);
+
+  const grid = document.createElement("div");
+  grid.className = "libros-grid";
+  cat.libros.forEach(nombreCorrecto=>{
+    const n = contadorLibro;
+    correctasLibros[`libro${n}`] = nombreCorrecto;
+    const div = document.createElement("div");
+    div.className = "libro-item";
+    div.innerHTML = `<span>${n}.</span><input type="text" name="libro${n}" placeholder="Nombre del libro">`;
+    grid.appendChild(div);
+    contadorLibro++;
+  });
+  librosContainer.appendChild(grid);
+});
+
+/* ================== RESPUESTAS CORRECTAS (1-6) ================== */
+const correctasMC = { p1:"C", p2:"C", p3:"A", p4:"A", p5:"C", p6:"C" };
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,""); // quita acentos
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen1-orientacion');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 57;
+
+  // Preguntas 1-6
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Matching 7-16
+  matching.forEach(item=>{
+    const el = form.elements[`p${item.num}`];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === item.correcta){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Libros 17-55
+  Object.keys(correctasLibros).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(normalizar(el.value) === normalizar(correctasLibros[campo])){
+      puntos++; el.classList.add("correcta");
+    } else {
+      el.classList.add("incorrecta");
+    }
+  });
+
+  // Confirmaciones 56-57 (se cuentan si están marcadas)
+  ["p56","p57"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  // Bloquear el examen: solo puede presentarse una vez
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>
