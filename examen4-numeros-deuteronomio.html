@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 4 – Números y Deuteronomio</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  textarea{max-width:100%;}
+  .timeline-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    text-align:center;
+  }
+  .timeline-item{
+    border:1px dashed #bbb;
+    border-radius:6px;
+    padding:10px 6px;
+  }
+  .timeline-item .libro{
+    font-weight:bold;
+    color:var(--azul);
+    margin-bottom:6px;
+    display:block;
+  }
+  .timeline-item input{max-width:100%;text-align:center;}
+  .bosquejo-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 30px;
+  }
+  .bosquejo-cols h4{color:var(--azul);margin:0 0 8px;}
+  .bosquejo-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .bosquejo-fila span{min-width:30px;font-weight:bold;color:var(--azul);}
+  .verso-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .verso-fila span{min-width:26px;font-weight:bold;color:var(--azul);}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .timeline-grid{grid-template-columns:1fr 1fr;}
+    .bosquejo-cols{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>Antiguo Testamento</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 4: Números y Deuteronomio (2023-2024)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>1–5. (5 puntos) Completa la línea de tiempo del Pentateuco</legend>
+      <div class="timeline-grid">
+        <div class="timeline-item"><span class="libro">Génesis</span><input type="text" name="p1" placeholder="¿Qué período describe?"></div>
+        <div class="timeline-item"><span class="libro">Éxodo</span><input type="text" name="p2" placeholder="¿Qué período describe?"></div>
+        <div class="timeline-item"><span class="libro">Levítico</span><input type="text" name="p3" placeholder="¿Qué período describe?"></div>
+        <div class="timeline-item"><span class="libro">Números</span><input type="text" name="p4" placeholder="¿Qué período describe?"></div>
+        <div class="timeline-item"><span class="libro">Deuteronomio</span><input type="text" name="p5" placeholder="¿Qué período describe?"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>6–11. (6 puntos) Escribe los bosquejos de los dos libros</legend>
+      <div class="bosquejo-cols">
+        <div>
+          <h4>Números</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p6"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p7"></div>
+          <div class="bosquejo-fila"><span>III.</span><input type="text" name="p8"></div>
+        </div>
+        <div>
+          <h4>Deuteronomio</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p9"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p10"></div>
+          <div class="bosquejo-fila"><span>III.</span><input type="text" name="p11"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>12–13. (2 puntos) Escribe Deuteronomio 6:4</legend>
+      <div class="verso-fila"><span>12.</span><input type="text" name="p12" placeholder="Primera parte del versículo"></div>
+      <div class="verso-fila"><span>13.</span><input type="text" name="p13" placeholder="Segunda parte del versículo"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preguntas 14–20</legend>
+
+      <article>
+        <label>14. El nombre de Números en hebreo fue</label>
+        <select name="p14">
+          <option value="">Selecciona</option>
+          <option value="A">A. Los censos</option>
+          <option value="B">B. En el desierto</option>
+          <option value="C">C. Las murmuraciones</option>
+          <option value="D">D. La peregrinación</option>
+        </select>
+      </article>
+
+      <article>
+        <label>15. La historia de Números y Deuteronomio abarca un período de</label>
+        <select name="p15">
+          <option value="">Selecciona</option>
+          <option value="A">A. 38 años</option>
+          <option value="B">B. 40 años</option>
+          <option value="C">C. 350 años</option>
+          <option value="D">D. 430 años</option>
+        </select>
+      </article>
+
+      <article>
+        <label>16. ¿Cuántos censos se encuentran en el libro de Números?</label>
+        <select name="p16">
+          <option value="">Selecciona</option>
+          <option value="A">A. Uno</option>
+          <option value="B">B. Dos</option>
+          <option value="C">C. Tres</option>
+          <option value="D">D. Cuatro</option>
+        </select>
+      </article>
+
+      <article>
+        <label>17. ¿Cuáles de las tribus pidieron a Moisés que les diesen herencia al este del Jordán?</label>
+        <select name="p17">
+          <option value="">Selecciona</option>
+          <option value="A">A. Judá, Benjamín, Efraín</option>
+          <option value="B">B. Rubén, Gad, Manasés</option>
+          <option value="C">C. Aser, Dan, Neftalí</option>
+          <option value="D">D. Zabulón, Isacar, Simeón</option>
+        </select>
+      </article>
+
+      <article>
+        <label>18. ¿Cuáles de las frases siguientes describe la condición espiritual del pueblo de Israel en el desierto?</label>
+        <select name="p18">
+          <option value="">Selecciona</option>
+          <option value="A">A. Prosperidad y tranquilidad</option>
+          <option value="B">B. Murmuraciones e idolatría</option>
+          <option value="C">C. Derrota tras derrota a las manos de sus enemigos</option>
+          <option value="D">D. Paz y contentamiento a pesar de su peregrinación.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>19. ¿Cuál de las frases siguientes no describe el libro de Deuteronomio?</label>
+        <select name="p19">
+          <option value="">Selecciona</option>
+          <option value="A">A. La repetición de la ley</option>
+          <option value="B">B. La segunda ley</option>
+          <option value="C">C. Los discursos de Moisés</option>
+          <option value="D">D. La entrada a la tierra prometida.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>20. El nombre en hebreo del libro de Deuteronomio es Haddeb-harim que significa</label>
+        <select name="p20">
+          <option value="">Selecciona</option>
+          <option value="A">A. Las palabras</option>
+          <option value="B">B. La segunda ley</option>
+          <option value="C">C. Las peregrinaciones</option>
+          <option value="D">D. Los preparativos</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p21" style="width:auto;display:inline-block;"> 21. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p22" style="width:auto;display:inline-block;"> 22. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen4-numeros-deuteronomio"; // guarda si ya fue presentado
+
+/* ================== RESPUESTAS CORRECTAS ================== */
+// 1-5: línea de tiempo del Pentateuco
+const correctasTimeline = {
+  p1:["creacion"],                 // Génesis: la Creación (a Egipto)
+  p2:["salida","exodo"],           // Éxodo: la Salida de Egipto / El Éxodo
+  p3:["frente","sinai"],           // Levítico: frente al Mte. Sinaí
+  p4:["sinai","jordan","desierto","cades"], // Números: del Sinaí al Jordán
+  p5:["entrada"]                   // Deuteronomio: la Entrada (a la tierra prometida)
+};
+
+// 6-11: bosquejos
+const correctasBosquejo = {
+  p6:["sinai","cades"],        // Números I. Del Sinaí a Cades-barnea
+  p7:["desierto"],             // Números II. En el desierto
+  p8:["cades","moab"],         // Números III. De Cades-barnea a Moab
+  p9:["historico"],            // Deuteronomio I. Primer discurso-histórico
+  p10:["legislativo"],         // Deuteronomio II. Segundo discurso-legislativo
+  p11:["didactico"]            // Deuteronomio III. Tercer discurso-didáctico
+};
+
+// 12-13: Deuteronomio 6:4
+const correctasVerso = {
+  p12:["oye","israel","jehova"],   // "Oye Israel, Jehová nuestro Dios"
+  p13:["uno"]                      // "Jehová uno es"
+};
+
+// 14-20
+const correctasMC = { p14:"B", p15:"A", p16:"B", p17:"B", p18:"B", p19:"D", p20:"A" };
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+function contieneTodas(textoNormalizado, palabras){
+  return palabras.every(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen4-numeros-deuteronomio');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 22;
+
+  // 1-5 Línea de tiempo
+  Object.keys(correctasTimeline).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasTimeline[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 6-11 Bosquejos
+  Object.keys(correctasBosquejo).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasBosquejo[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 12-13 Versículo
+  Object.keys(correctasVerso).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneTodas(val, correctasVerso[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 14-20 Opción múltiple
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Confirmaciones 21-22
+  ["p21","p22"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>

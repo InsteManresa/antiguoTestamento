@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 5 – Josué y Jueces</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  textarea{max-width:100%;}
+  .bosquejo-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 30px;
+  }
+  .bosquejo-cols h4{color:var(--azul);margin:0 0 8px;}
+  .bosquejo-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .bosquejo-fila span{min-width:30px;font-weight:bold;color:var(--azul);}
+  .pasos-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .pasos-fila span{min-width:26px;font-weight:bold;color:var(--azul);}
+  .juez-fila{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .juez-fila span{min-width:26px;font-weight:bold;color:var(--azul);padding-top:6px;}
+  .juez-fila .campos{flex:1;display:flex;flex-direction:column;gap:4px;}
+  .juez-fila input{max-width:100%;}
+  .pista{font-size:.85em;color:#666;font-weight:normal;margin:4px 0 10px;}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .bosquejo-cols{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>Antiguo Testamento</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 5: Josué y Jueces (2023-2024)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>1–5. (5 puntos) Escribe los bosquejos de los dos libros</legend>
+      <div class="bosquejo-cols">
+        <div>
+          <h4>Josué</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p1"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p2"></div>
+        </div>
+        <div>
+          <h4>Jueces</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p3"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p4"></div>
+          <div class="bosquejo-fila"><span>III.</span><input type="text" name="p5"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>6–10. (5 puntos) Nombra los cinco pasos de la apostasía de Jueces</legend>
+      <div class="pasos-fila"><span>a.</span><input type="text" name="p6"></div>
+      <div class="pasos-fila"><span>b.</span><input type="text" name="p7"></div>
+      <div class="pasos-fila"><span>c.</span><input type="text" name="p8"></div>
+      <div class="pasos-fila"><span>d.</span><input type="text" name="p9"></div>
+      <div class="pasos-fila"><span>e.</span><input type="text" name="p10"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preguntas 11–17</legend>
+
+      <article>
+        <label>11. La conquista de la tierra prometida</label>
+        <select name="p11">
+          <option value="">Selecciona</option>
+          <option value="A">A. fue llevado a cabo en tres campañas militares.</option>
+          <option value="B">B. empezó con la conquista de Hai.</option>
+          <option value="C">C. tardó diez años.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>12. Después de cruzar el Jordán, los israelitas ubicaron el tabernáculo en</label>
+        <select name="p12">
+          <option value="">Selecciona</option>
+          <option value="A">A. Gilgal</option>
+          <option value="B">B. Silo</option>
+          <option value="C">C. Jerusalén</option>
+          <option value="D">D. Hebrón</option>
+        </select>
+      </article>
+
+      <article>
+        <label>13. Las ciudades de refugio fueron especificadas como tales para</label>
+        <select name="p13">
+          <option value="">Selecciona</option>
+          <option value="A">A. los que mataron a una persona por accidente.</option>
+          <option value="B">B. los refugiados de otras regiones de Canaán</option>
+          <option value="C">C. los que necesitaban tomar unas vacaciones.</option>
+          <option value="D">D. los levitas que no recibían herencia.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>14. ¿Qué tribu no recibió reparto territorial?</label>
+        <select name="p14">
+          <option value="">Selecciona</option>
+          <option value="A">A. Benjamín</option>
+          <option value="B">B. Dan</option>
+          <option value="C">C. Isacar</option>
+          <option value="D">D. Leví</option>
+        </select>
+      </article>
+
+      <article>
+        <label>15. ¿Cuántos años abarca el período de los jueces?</label>
+        <select name="p15">
+          <option value="">Selecciona</option>
+          <option value="A">A. 200 años</option>
+          <option value="B">B. 350 años</option>
+          <option value="C">C. 400 años</option>
+          <option value="D">D. 430 años</option>
+        </select>
+      </article>
+
+      <article>
+        <label>16. ¿Cuántos jueces son mencionados en el libro de Jueces?</label>
+        <select name="p16">
+          <option value="">Selecciona</option>
+          <option value="A">A. 6</option>
+          <option value="B">B. 10</option>
+          <option value="C">C. 12</option>
+          <option value="D">D. 16</option>
+        </select>
+      </article>
+
+      <article>
+        <label>17. ¿Cuál de las siguientes frases introduce cada época de apostasía en el libro de Jueces?</label>
+        <select name="p17">
+          <option value="">Selecciona</option>
+          <option value="A">A. “cada uno hacía lo que bien le parecía”</option>
+          <option value="B">B. “y el Señor abandonó al pueblo”</option>
+          <option value="C">C. “y la ira de Dios se encendió contra Israel”</option>
+          <option value="D">D. “y los hijos de Israel hicieron lo malo ante los ojos del Señor”</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>18–20. (3 puntos) Nombra tres de los jueces, dando un hecho histórico de cada uno</legend>
+      <p class="pista">Jueces mayores: Otoniel, Aod, Débora y Barac, Gedeón, Jefté, Sansón · Jueces menores: Samgar, Tola, Jair, Ibzán, Elón, Abdón</p>
+      <div class="juez-fila">
+        <span>18.</span>
+        <div class="campos">
+          <input type="text" name="p18_nombre" placeholder="Nombre del juez">
+          <input type="text" name="p18_hecho" placeholder="Hecho histórico">
+        </div>
+      </div>
+      <div class="juez-fila">
+        <span>19.</span>
+        <div class="campos">
+          <input type="text" name="p19_nombre" placeholder="Nombre del juez">
+          <input type="text" name="p19_hecho" placeholder="Hecho histórico">
+        </div>
+      </div>
+      <div class="juez-fila">
+        <span>20.</span>
+        <div class="campos">
+          <input type="text" name="p20_nombre" placeholder="Nombre del juez">
+          <input type="text" name="p20_hecho" placeholder="Hecho histórico">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p21" style="width:auto;display:inline-block;"> 21. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p22" style="width:auto;display:inline-block;"> 22. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen5-josue-jueces"; // guarda si ya fue presentado
+
+/* ================== RESPUESTAS CORRECTAS ================== */
+// 1-5: bosquejos
+const correctasBosquejo = {
+  p1:["conquista"],                 // Josué I. La conquista
+  p2:["reparto","tierra"],          // Josué II. El reparto de la tierra
+  p3:["prologo"],                   // Jueces I. Prólogo
+  p4:["apostasia","ciclos"],        // Jueces II. Seis ciclos de apostasía
+  p5:["epilogo"]                    // Jueces III. Epílogo
+};
+
+// 6-10: pasos de la apostasía (en orden)
+const correctasPasos = {
+  p6:["apostasia"],
+  p7:["opresion"],
+  p8:["arrepentimiento"],
+  p9:["liberacion"],
+  p10:["paz"]
+};
+
+// 11-17
+const correctasMC = { p11:"A", p12:"A", p13:"A", p14:"D", p15:"B", p16:"C", p17:"D" };
+
+// 18-20: nombres válidos de jueces (mayores y menores)
+const juecesValidos = [
+  "otoniel","aod","ehud","debora","barac","gedeon","jefte","sanson",
+  "samgar","tola","jair","ibzan","elon","abdon"
+];
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen5-josue-jueces');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 22;
+
+  // 1-5 Bosquejos
+  Object.keys(correctasBosquejo).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasBosquejo[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 6-10 Pasos de la apostasía
+  Object.keys(correctasPasos).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasPasos[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 11-17 Opción múltiple
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 18-20 Jueces (nombre válido, sin repetir, con un hecho descrito)
+  const juecesUsados = new Set();
+  [18,19,20].forEach(n=>{
+    const elNombre = form.elements[`p${n}_nombre`];
+    const elHecho = form.elements[`p${n}_hecho`];
+    elNombre.classList.remove("correcta","incorrecta");
+    const val = normalizar(elNombre.value);
+    const match = juecesValidos.find(j => !juecesUsados.has(j) && val.includes(j));
+    const tieneHecho = elHecho.value.trim().length > 3;
+    if(match && tieneHecho){
+      puntos++; juecesUsados.add(match); elNombre.classList.add("correcta");
+    } else {
+      elNombre.classList.add("incorrecta");
+    }
+  });
+
+  // Confirmaciones 21-22
+  ["p21","p22"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>
