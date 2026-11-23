@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 9 – Job y Los Rollos</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  .cita{
+    display:block;
+    font-weight:normal;
+    font-style:italic;
+    margin:4px 0 6px 14px;
+    color:#444;
+  }
+  .leyenda{
+    background:var(--azul-claro);
+    border-radius:6px;
+    padding:8px 14px;
+    margin-bottom:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4px 20px;
+  }
+  .matching-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 30px;
+  }
+  .matching-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .matching-item span{min-width:26px;font-weight:bold;color:var(--azul);}
+  .matching-item select{max-width:260px;}
+  .verso-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .verso-fila span{min-width:26px;font-weight:bold;color:var(--azul);}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .matching-grid, .leyenda{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>Antiguo Testamento</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 9: Job y Los Rollos (2026-2027)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>Preguntas 1–5: poesía hebrea</legend>
+
+      <article>
+        <label>1. Una característica de la poesía hebrea es el paralelismo de</label>
+        <select name="p1">
+          <option value="">Selecciona</option>
+          <option value="A">A. ritmo</option>
+          <option value="B">B. metro</option>
+          <option value="C">C. pensamiento</option>
+        </select>
+      </article>
+
+      <p><strong>Identifica el tipo de paralelismo (preguntas 2–5):</strong></p>
+      <div class="leyenda">
+        <div>A. Paralelismo sinónimo</div>
+        <div>C. Paralelismo sintético</div>
+        <div>B. Paralelismo antitético</div>
+        <div>D. Paralelismo emblemático</div>
+      </div>
+      <div id="paralelismos"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preguntas 6–12: Job y la literatura de sabiduría</legend>
+
+      <article>
+        <label>6. Los libros clasificados como “literatura de la sabiduría” del Antiguo Testamento son:</label>
+        <select name="p6">
+          <option value="">Selecciona</option>
+          <option value="A">A. Job, Eclesiastés, Proverbios</option>
+          <option value="B">B. Proverbios, Salmos, Job</option>
+          <option value="C">C. Lamentaciones, Job, Eclesiastés, Proverbios</option>
+        </select>
+      </article>
+
+      <article>
+        <label>7. La literatura de la sabiduría está caracterizada por:</label>
+        <select name="p7">
+          <option value="">Selecciona</option>
+          <option value="A">A. el proverbio encajada en frases cortas</option>
+          <option value="B">B. el uso de la forma dramática</option>
+          <option value="C">C. su tratamiento filosófico de las grandes preguntas</option>
+          <option value="D">D. la sabiduría escondida en el simbolismo.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>8. Los amigos de Job eran:</label>
+        <select name="p8">
+          <option value="">Selecciona</option>
+          <option value="A">A. Eliú, Elifaz y Zofar</option>
+          <option value="B">B. Eliú, Bildad y Zofar</option>
+          <option value="C">C. Elifaz, Bildad y Zofar</option>
+          <option value="D">D. Elifaz, Eliú y Bildad</option>
+        </select>
+      </article>
+
+      <article>
+        <label>9. El problema que trata el libro de Job es el de teodicea, es decir:</label>
+        <select name="p9">
+          <option value="">Selecciona</option>
+          <option value="A">A. la prosperidad de los justos y el castigo de los malos.</option>
+          <option value="B">B. sufrimiento en general.</option>
+          <option value="C">C. el origen del mal en el mundo.</option>
+          <option value="D">D. la justicia de Dios en relación con el sufrimiento de los justos.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>10. Después de la prueba, Job hubiera estado de acuerdo con</label>
+        <select name="p10">
+          <option value="">Selecciona</option>
+          <option value="A">A. Nahúm: “Jehová es tardo para la ira y grande en poder y no tendrá por inocente al culpable.”</option>
+          <option value="B">B. Habacuc: “El justo por la fe vivirá”</option>
+          <option value="C">C. David: “No te impacientes a causa de los malignos, ni tengas envidia de los que hacen iniquidad. Porque como hierba pronto cortada y como la hierba verde se secarán.”</option>
+          <option value="D">D. Josué. “Nunca se apartará de tu boca este libro de la ley, sino que de día y de noche meditarás en él, para que guardes y hagas conforme a todo lo que en él está escrito; porque entonces harás prosperar tu camino y todo te saldrá bien.”</option>
+        </select>
+      </article>
+
+      <article>
+        <label>11. ¿Cuántos ciclos de discursos hay en este drama?</label>
+        <select name="p11">
+          <option value="">Selecciona</option>
+          <option value="A">A. 3</option>
+          <option value="B">B. 4</option>
+          <option value="C">C. 5</option>
+          <option value="D">D. 6</option>
+        </select>
+      </article>
+
+      <article>
+        <label>12. ¿Cómo contesta Jehová a su siervo Job?</label>
+        <select name="p12">
+          <option value="">Selecciona</option>
+          <option value="A">A. Le explica la razones por las cuales había sufrido tanto.</option>
+          <option value="B">B. No contesta su pregunta de por qué sufren los justos, sino le enseña que el siervo de Dios ha de descansar en Dios mismo.</option>
+          <option value="C">C. Le regaña por su falta de fe.</option>
+          <option value="D">D. Dios no le contesta.</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>13–17. (5 puntos) Empareja “los rollos” con su fiesta correspondiente</legend>
+      <div class="leyenda">
+        <div>A. Fiesta de los tabernáculos</div>
+        <div>B. Fiesta de pascua</div>
+        <div>C. Fiesta de purim</div>
+        <div>D. Fiesta de Pentecostés</div>
+        <div>E. Aniversario de la destrucción de Jerusalén</div>
+      </div>
+      <div class="matching-grid" id="matching-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>18–20. (3 puntos) Escribe Romanos 8:28</legend>
+      <div class="verso-fila"><span>18.</span><input type="text" name="p18" placeholder="Primera parte del versículo"></div>
+      <div class="verso-fila"><span>19.</span><input type="text" name="p19" placeholder="Segunda parte del versículo"></div>
+      <div class="verso-fila"><span>20.</span><input type="text" name="p20" placeholder="Tercera parte del versículo"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p21" style="width:auto;display:inline-block;"> 21. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p22" style="width:auto;display:inline-block;"> 22. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen9-job-rollos"; // guarda si ya fue presentado
+
+/* ================== 2-5 PARALELISMOS ================== */
+const paralelismos = [
+  {num:2, lineas:["El hijo sabio recibe el consejo del padre","mas el burlador no escucha las reprensiones."], ref:"Pr. 13:1"},
+  {num:3, lineas:["Jehová, ¿quién habitará en tu tabernáculo?","¿Quién morará en tu monte santo?"], ref:"Sal. 15:1"},
+  {num:4, lineas:["¿Hasta cuándo juzgaréis injustamente,","y aceptaréis las personas de los impíos?"], ref:"Sal. 82:2"},
+  {num:5, lineas:["Los leoncillos necesitan y tienen hambre","Pero los que buscan a Jehová no tendrán falta de ningún bien"], ref:"Sal. 34:10"}
+];
+const contPar = document.getElementById("paralelismos");
+paralelismos.forEach(p=>{
+  const art = document.createElement("article");
+  art.innerHTML = `<label>${p.num}.</label>
+    <span class="cita">${p.lineas[0]}<br>${p.lineas[1]} — ${p.ref}</span>
+    <select name="p${p.num}">
+      <option value="">Selecciona</option>
+      <option value="A">A. Sinónimo</option>
+      <option value="B">B. Antitético</option>
+      <option value="C">C. Sintético</option>
+      <option value="D">D. Emblemático</option>
+    </select>`;
+  contPar.appendChild(art);
+});
+
+/* ================== 13-17 ROLLOS ================== */
+const matching = [
+  {num:13, texto:"Lamentaciones", correcta:"E"},
+  {num:14, texto:"Ester", correcta:"C"},
+  {num:15, texto:"Cantares", correcta:"B"},
+  {num:16, texto:"Eclesiastés", correcta:"A"},
+  {num:17, texto:"Rut", correcta:"D"}
+];
+const gridMatching = document.getElementById("matching-grid");
+matching.forEach(item=>{
+  const div = document.createElement("div");
+  div.className = "matching-item";
+  div.innerHTML = `<span>${item.num}.</span>
+    <select name="p${item.num}">
+      <option value="">--</option>
+      <option value="A">A. Tabernáculos</option>
+      <option value="B">B. Pascua</option>
+      <option value="C">C. Purim</option>
+      <option value="D">D. Pentecostés</option>
+      <option value="E">E. Destrucción de Jerusalén</option>
+    </select>
+    <label style="font-weight:normal;margin:0;">${item.texto}</label>`;
+  gridMatching.appendChild(div);
+});
+
+/* ================== RESPUESTAS CORRECTAS ================== */
+const correctasMC = {
+  p1:"C", p2:"B", p3:"A", p4:"C", p5:"D",
+  p6:"A", p7:"A", p8:"C", p9:"D", p10:"B", p11:"B", p12:"B"
+};
+
+// 18-20: Romanos 8:28
+const correctasVerso = {
+  p18:["sabemos","aman"],
+  p19:["todas las cosas","ayudan","bien"],
+  p20:["proposito","llamados"]
+};
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen9-job-rollos');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 22;
+
+  // 1-12 Opción múltiple
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 13-17 Rollos
+  matching.forEach(item=>{
+    const el = form.elements[`p${item.num}`];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === item.correcta){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 18-20 Romanos 8:28
+  Object.keys(correctasVerso).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasVerso[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Confirmaciones 21-22
+  ["p21","p22"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 10 – Salmos y Proverbios</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:560px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  .verso-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .verso-fila span{min-width:30px;font-weight:bold;color:var(--azul);}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>Antiguo Testamento</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 10: Salmos y Proverbios (2026-2027)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>Preguntas 1–8</legend>
+
+      <article>
+        <label>1. Los Salmos se dividen en _____ partes.</label>
+        <select name="p1">
+          <option value="">Selecciona</option>
+          <option value="A">A. 2</option>
+          <option value="B">B. 3</option>
+          <option value="C">C. 5</option>
+          <option value="D">D. 6</option>
+        </select>
+      </article>
+
+      <article>
+        <label>2. El primero y el último recopilador de los Salmos pudieron haber sido</label>
+        <select name="p2">
+          <option value="">Selecciona</option>
+          <option value="A">A. David y Esdras</option>
+          <option value="B">B. David y los hijos de Coré</option>
+          <option value="C">C. David y Asaf</option>
+          <option value="D">D. Moisés y David.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>3. Cada sección de Salmos termina con</label>
+        <select name="p3">
+          <option value="">Selecciona</option>
+          <option value="A">A. una alabanza.</option>
+          <option value="B">B. una doxología.</option>
+          <option value="C">C. la firma del autor.</option>
+          <option value="D">D. un salmo corto.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>4. La palabra “salmos” quiere decir</label>
+        <select name="p4">
+          <option value="">Selecciona</option>
+          <option value="A">A. el libro de alabanzas</option>
+          <option value="B">B. el libro de David</option>
+          <option value="C">C. el himnario del santuario</option>
+          <option value="D">D. cantos acompañados por instrumentos de cuerda.</option>
+        </select>
+      </article>
+
+      <article>
+        <label>5. ¿Cuál de los siguientes no era un autor de los Salmos?</label>
+        <select name="p5">
+          <option value="">Selecciona</option>
+          <option value="A">A. Salomón</option>
+          <option value="B">B. Moisés</option>
+          <option value="C">C. Samuel</option>
+          <option value="D">D. Asaf</option>
+        </select>
+      </article>
+
+      <article>
+        <label>6. El título “Proverbios” viene del hebreo “mashal” que significa</label>
+        <select name="p6">
+          <option value="">Selecciona</option>
+          <option value="A">A. un poema de sabiduría</option>
+          <option value="B">B. un dicho breve y expresivo que declara sabiduría</option>
+          <option value="C">C. los consejos reales sobre la sabiduría</option>
+        </select>
+      </article>
+
+      <article>
+        <label>7. ¿Cuántos de los salmos son “huérfanos”?</label>
+        <select name="p7">
+          <option value="">Selecciona</option>
+          <option value="A">A. La cuarta parte</option>
+          <option value="B">B. La tercera parte</option>
+          <option value="C">C. La mitad</option>
+          <option value="D">D. La quinta parte</option>
+        </select>
+      </article>
+
+      <article>
+        <label>8. El nombre en hebreo de los salmos es “tehillim” que significa</label>
+        <select name="p8">
+          <option value="">Selecciona</option>
+          <option value="A">A. el libro de alabanzas</option>
+          <option value="B">B. el libro de David</option>
+          <option value="C">C. el himnario del santuario</option>
+          <option value="D">D. cantos acompañados por instrumentos de cuerda.</option>
+        </select>
+      </article>
+    </fieldset>
+
+    <fieldset>
+      <legend>9–20. (12 puntos) Escribe el Salmo 23</legend>
+      <div id="salmo-container"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p21" style="width:auto;display:inline-block;"> 21. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p22" style="width:auto;display:inline-block;"> 22. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen10-salmos-proverbios"; // guarda si ya fue presentado
+
+/* ================== RESPUESTAS CORRECTAS ================== */
+const correctasMC = { p1:"C", p2:"A", p3:"B", p4:"D", p5:"C", p6:"B", p7:"B", p8:"A" };
+
+// 9-20: Salmo 23 en 12 frases (se acepta cualquiera de las palabras clave de cada una)
+const salmo = [
+  {num:9,  clave:["pastor","faltara"]},                    // Jehová es mi pastor: nada me faltará.
+  {num:10, clave:["delicados","pastos","descansar"]},      // En lugares de delicados pastos me hará descansar
+  {num:11, clave:["aguas","reposo"]},                      // junto a aguas de reposo me pastoreará
+  {num:12, clave:["confortara"]},                          // Confortará mi alma
+  {num:13, clave:["sendas","justicia"]},                   // Me guiará por sendas de justicia por amor de su nombre
+  {num:14, clave:["valle","sombra"]},                      // Aunque ande en valle de sombra de muerte
+  {num:15, clave:["temere","conmigo"]},                    // no temeré mal alguno, porque tú estarás conmigo
+  {num:16, clave:["vara","cayado"]},                       // Tu vara y tu cayado me infundirán aliento
+  {num:17, clave:["mesa","angustiadores"]},                // Aderezas mesa delante de mí en presencia de mis angustiadores
+  {num:18, clave:["unges","aceite","rebosando"]},          // unges mi cabeza con aceite; mi copa está rebosando
+  {num:19, clave:["misericordia","bien"]},                 // Ciertamente el bien y la misericordia me seguirán...
+  {num:20, clave:["casa","morare","largos"]}               // y en la casa de Jehová moraré por largos días
+];
+const contSalmo = document.getElementById("salmo-container");
+salmo.forEach(s=>{
+  const div = document.createElement("div");
+  div.className = "verso-fila";
+  div.innerHTML = `<span>${s.num}.</span><input type="text" name="p${s.num}" placeholder="Parte ${s.num-8} del Salmo 23">`;
+  contSalmo.appendChild(div);
+});
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen10-salmos-proverbios');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 22;
+
+  // 1-8 Opción múltiple
+  Object.keys(correctasMC).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === correctasMC[campo]){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 9-20 Salmo 23
+  salmo.forEach(s=>{
+    const el = form.elements[`p${s.num}`];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, s.clave)){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Confirmaciones 21-22
+  ["p21","p22"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>

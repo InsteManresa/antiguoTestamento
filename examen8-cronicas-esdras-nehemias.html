@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 8 – I y II Crónicas, Esdras y Nehemías</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"], textarea{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  textarea{max-width:100%;}
+  .bosquejo-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 30px;
+    margin-bottom:18px;
+  }
+  .bosquejo-cols h4{color:var(--azul);margin:0 0 8px;}
+  .bosquejo-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .bosquejo-fila span{min-width:30px;font-weight:bold;color:var(--azul);}
+  .matching-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 30px;
+  }
+  .matching-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .matching-item span{min-width:26px;font-weight:bold;color:var(--azul);}
+  .matching-item select{max-width:170px;}
+  .verso-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .verso-fila span{min-width:26px;font-weight:bold;color:var(--azul);}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .bosquejo-cols, .matching-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>Antiguo Testamento</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 8: I y II Crónicas, Esdras y Nehemías (2026-2027)</h2>
+  <p class="subinfo">Selecciona la respuesta correcta o completa según corresponda.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>1–8. (8 puntos) Escribe los bosquejos de los libros</legend>
+      <div class="bosquejo-cols">
+        <div>
+          <h4>I Crónicas</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p1"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p2"></div>
+        </div>
+        <div>
+          <h4>II Crónicas</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p3"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p4"></div>
+        </div>
+      </div>
+      <div class="bosquejo-cols">
+        <div>
+          <h4>Esdras</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p5"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p6"></div>
+        </div>
+        <div>
+          <h4>Nehemías</h4>
+          <div class="bosquejo-fila"><span>I.</span><input type="text" name="p7"></div>
+          <div class="bosquejo-fila"><span>II.</span><input type="text" name="p8"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>9–22. A. Nehemías · B. Esdras · C. I Crónicas · D. Zorobabel · E. II Crónicas</legend>
+      <div class="matching-grid" id="matching-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>23–25. (3 puntos) Escribe II Crónicas 7:14</legend>
+      <div class="verso-fila"><span>23.</span><input type="text" name="p23" placeholder="Primera parte del versículo"></div>
+      <div class="verso-fila"><span>24.</span><input type="text" name="p24" placeholder="Segunda parte del versículo"></div>
+      <div class="verso-fila"><span>25.</span><input type="text" name="p25" placeholder="Tercera parte del versículo"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p26" style="width:auto;display:inline-block;"> 26. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p27" style="width:auto;display:inline-block;"> 27. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. Hay solamente una respuesta por pregunta.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen8-cronicas-esdras-nehemias"; // guarda si ya fue presentado
+
+/* ================== DATOS: MATCHING 9-22 ================== */
+const matching = [
+  {num:9,  texto:"Era sacerdote", correcta:"B"},
+  {num:10, texto:"Era copero del rey Artajerjes.", correcta:"A"},
+  {num:11, texto:"La historia de Ester se sitúa en los años de silencio de este libro.", correcta:"B"},
+  {num:12, texto:"Dirigió el primer retorno a Jerusalén en el año 536 a.C.", correcta:"D"},
+  {num:13, texto:"Fue el gobernador civil de Jerusalén durante el ministerio de Hageo y Zacarías", correcta:"D"},
+  {num:14, texto:"Escrito por Esdras", correcta:"C"},
+  {num:15, texto:"Es el “III Crónicas”", correcta:"B"},
+  {num:16, texto:"Edificó los muros de Jerusalén", correcta:"A"},
+  {num:17, texto:"Dirigió la segunda emigración en el 458 a.C.", correcta:"B"},
+  {num:18, texto:"Presenta la historia de Israel desde un punto de vista sacerdotal.", correcta:"E"},
+  {num:19, texto:"Era nieto de Jeconías, el último rey de Judá.", correcta:"D"},
+  {num:20, texto:"Era nombrado gobernador de Jerusalén por el rey Ciro.", correcta:"D"},
+  {num:21, texto:"Hageo y Zacarías regresaron a Jerusalén con él.", correcta:"D"},
+  {num:22, texto:"Dirigió el segundo retorno a Jerusalén en el año 458 a.C.", correcta:"B"}
+];
+const gridMatching = document.getElementById("matching-grid");
+matching.forEach(item=>{
+  const div = document.createElement("div");
+  div.className = "matching-item";
+  div.innerHTML = `<span>${item.num}.</span>
+    <select name="p${item.num}">
+      <option value="">--</option>
+      <option value="A">A. Nehemías</option>
+      <option value="B">B. Esdras</option>
+      <option value="C">C. I Crónicas</option>
+      <option value="D">D. Zorobabel</option>
+      <option value="E">E. II Crónicas</option>
+    </select>
+    <label style="font-weight:normal;margin:0;">${item.texto}</label>`;
+  gridMatching.appendChild(div);
+});
+
+/* ================== RESPUESTAS CORRECTAS ================== */
+// 1-8: bosquejos
+const correctasBosquejo = {
+  p1:["genealogias"],          // I Crónicas I. Las genealogías
+  p2:["david"],                // I Crónicas II. David
+  p3:["salomon"],              // II Crónicas I. Salomón
+  p4:["historia","juda"],      // II Crónicas II. Historia de Judá
+  p5:["zorobabel","templo"],   // Esdras I. El regreso bajo Zorobabel / reconstrucción del templo
+  p6:["esdras","reforma"],     // Esdras II. El regreso bajo Esdras / reforma espiritual
+  p7:["muros","muralla"],      // Nehemías I. La reconstrucción de los muros
+  p8:["reforma"]               // Nehemías II. La reforma del pueblo
+};
+
+// 23-25: II Crónicas 7:14
+const correctasVerso = {
+  p23:["humillare","pueblo"],
+  p24:["oire","cielos"],
+  p25:["perdonare","sanare"]
+};
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function contieneAlguna(textoNormalizado, palabras){
+  return palabras.some(p => textoNormalizado.includes(p));
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen8-cronicas-esdras-nehemias');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 27;
+
+  // 1-8 Bosquejos
+  Object.keys(correctasBosquejo).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasBosquejo[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 9-22 Matching
+  matching.forEach(item=>{
+    const el = form.elements[`p${item.num}`];
+    el.classList.remove("correcta","incorrecta");
+    if(el.value === item.correcta){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 23-25 Versículo
+  Object.keys(correctasVerso).forEach(campo=>{
+    const el = form.elements[campo];
+    el.classList.remove("correcta","incorrecta");
+    const val = normalizar(el.value);
+    if(contieneAlguna(val, correctasVerso[campo])){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // Confirmaciones 26-27
+  ["p26","p27"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>
