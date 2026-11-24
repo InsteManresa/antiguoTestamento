@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 13 – Los doce profetas menores</title>
+<style>
+  :root{
+    --azul:#1c3d5a;
+    --azul-claro:#e8f0f7;
+    --borde:#0f2439;
+    --gris:#f4f6f8;
+    --ok:#2e7d32;
+    --error:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--gris);
+    margin:0;
+    padding:20px;
+    color:#222;
+  }
+  .examen-container{
+    max-width:900px;
+    margin:0 auto;
+    background:#fff;
+    border:2px solid var(--borde);
+    padding:30px 40px;
+  }
+  .encabezado{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-bottom:3px solid var(--azul);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  .encabezado h1{margin:0;color:var(--azul);font-size:1.6em;}
+  h2{color:var(--azul);margin-top:0;}
+  .subinfo{color:#555;font-style:italic;margin-top:-8px;}
+  #nombre-impreso{margin:6px 0 16px;font-weight:bold;}
+  article{margin-bottom:14px;}
+  label{display:block;margin-bottom:4px;font-weight:600;}
+  select, input[type="text"]{
+    width:100%;
+    max-width:460px;
+    padding:6px 8px;
+    border:1px solid #aaa;
+    border-radius:4px;
+    font-family:inherit;
+    font-size:1em;
+  }
+  .leyenda{
+    background:var(--azul-claro);
+    border-radius:6px;
+    padding:8px 14px;
+    margin-bottom:14px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:4px 16px;
+    font-size:.95em;
+  }
+  .frase-item{
+    padding:6px 8px;
+    border-radius:4px;
+    margin-bottom:8px;
+  }
+  .frase-item .fila{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .frase-item .num{min-width:28px;font-weight:bold;color:var(--azul);}
+  .frase-item .texto{flex:1;}
+  .frase-item select{max-width:110px;flex:0 0 110px;}
+  .multi{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:2px 8px;
+    margin:6px 0 0 38px;
+    font-size:.9em;
+  }
+  .multi label{
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:normal;
+    margin:0;
+    cursor:pointer;
+  }
+  .frase-item.correcta{outline:2px solid var(--ok);}
+  .frase-item.incorrecta{outline:2px solid var(--error);}
+  .profetas-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 30px;
+  }
+  .profeta-fila{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .profeta-fila span{min-width:30px;font-weight:bold;color:var(--azul);}
+  fieldset{
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:18px;
+    padding:14px 18px;
+  }
+  legend{
+    font-weight:bold;
+    color:#fff;
+    background:var(--azul);
+    padding:4px 12px;
+    border-radius:4px;
+  }
+  button{
+    background:var(--azul);
+    color:#fff;
+    border:none;
+    padding:10px 22px;
+    font-size:1em;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  button:hover{background:var(--borde);}
+  #resultado{
+    margin-top:18px;
+    padding:14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1em;
+    display:none;
+  }
+  #resultado.ok{background:var(--azul-claro);color:var(--ok);display:block;}
+  .correcta{outline:2px solid var(--ok) !important;}
+  .incorrecta{outline:2px solid var(--error) !important;}
+  .modal{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .modal.oculto{display:none;}
+  .modal-content{
+    background:#fff;
+    padding:26px 30px;
+    border-radius:8px;
+    max-width:420px;
+    width:90%;
+    text-align:center;
+  }
+  .modal-content input{margin:10px auto;}
+  @media print{
+    button, .modal{display:none !important;}
+  }
+  @media (max-width:640px){
+    .leyenda{grid-template-columns:repeat(2,1fr);}
+    .profetas-grid{grid-template-columns:1fr;}
+    .multi{grid-template-columns:repeat(3,1fr);margin-left:0;}
+    .frase-item .fila{flex-wrap:wrap;}
+    .frase-item .texto{flex:1 1 100%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="examen-container">
+  <div class="encabezado">
+    <img src="image.png" alt="INSTE" class="logo" style="width: 15%;"/>
+    <h1>El Discipulado 1</h1>
+  </div>
+  <h2>Antiguo Testamento — Examen 13: Los doce profetas menores (2026-2027)</h2>
+  <p class="subinfo">Empareja cada frase con el profeta a quien se refiere. Se puede emplear más de una vez el nombre de un profeta.</p>
+  <h3 id="nombre-impreso"></h3>
+
+  <form id="form-examen">
+
+    <fieldset>
+      <legend>1–20. Empareja las frases con el profeta</legend>
+      <div class="leyenda">
+        <div>A. Abdías</div><div>B. Amós</div><div>C. Habacuc</div><div>D. Hageo</div>
+        <div>E. Joel</div><div>F. Jonás</div><div>G. Malaquías</div><div>H. Miqueas</div>
+        <div>I. Nahúm</div><div>J. Oseas</div><div>K. Sofonías</div><div>L. Zacarías</div>
+      </div>
+      <div id="frases-container"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>21–32. (12 puntos) Escribe los profetas menores en orden bíblico</legend>
+      <div class="profetas-grid" id="profetas-grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>33. Escribe Hab. 2:4b</legend>
+      <input type="text" name="p33" style="max-width:100%;" placeholder="Escribe aquí el versículo...">
+    </fieldset>
+
+    <fieldset>
+      <legend>Confirmaciones</legend>
+      <article>
+        <label><input type="checkbox" name="p34" style="width:auto;display:inline-block;"> 34. Estudié todos los días.</label>
+      </article>
+      <article>
+        <label><input type="checkbox" name="p35" style="width:auto;display:inline-block;"> 35. Terminé la lección.</label>
+      </article>
+    </fieldset>
+
+    <button type="button" onclick="calcularExamen()">Calcular y Imprimir</button>
+    <div id="resultado"></div>
+  </form>
+</div>
+
+<!-- Modal de bienvenida -->
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-content">
+    <h2>Instrucciones del examen</h2>
+    <p>Selecciona o escribe la respuesta correcta. En las preguntas con varias respuestas, marca todas las que correspondan.</p>
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" id="nombre" />
+    <button onclick="iniciarExamen()">Continuar</button>
+  </div>
+</div>
+
+<!-- Modal de bloqueo -->
+<div id="modal-bloqueo" class="modal oculto">
+  <div class="modal-content">
+    <h2>Examen ya presentado</h2>
+    <p id="mensaje-bloqueo"></p>
+    <label for="clave">Ingresa la clave del facilitador para desbloquear:</label>
+    <input type="password" id="clave" />
+    <button onclick="desbloquearExamen()">Desbloquear</button>
+  </div>
+</div>
+
+<script>
+/* ================== CONFIGURACIÓN ================== */
+const CLAVE_FACILITADOR = "59"; // clave para desbloquear el examen
+const STORAGE_KEY = "examen13-profetas-menores"; // guarda si ya fue presentado
+
+const PROFETAS = [
+  {l:"A", n:"Abdías"}, {l:"B", n:"Amós"}, {l:"C", n:"Habacuc"}, {l:"D", n:"Hageo"},
+  {l:"E", n:"Joel"}, {l:"F", n:"Jonás"}, {l:"G", n:"Malaquías"}, {l:"H", n:"Miqueas"},
+  {l:"I", n:"Nahúm"}, {l:"J", n:"Oseas"}, {l:"K", n:"Sofonías"}, {l:"L", n:"Zacarías"}
+];
+
+/* ================== 1-20 FRASES ================== */
+// multi:true -> casillas (varias respuestas); correcta = letras ordenadas alfabéticamente
+const frases = [
+  {num:1,  texto:"Los profetas de Israel. (3 respuestas)", multi:true, correcta:"BFJ"},
+  {num:2,  texto:"Los profetas de Judá. (6 respuestas)", multi:true, correcta:"ACEHIK"},
+  {num:3,  texto:"Los profetas de la restauración (3 respuestas)", multi:true, correcta:"DGL"},
+  {num:4,  texto:"Su profecía trata de la destrucción de Edóm.", correcta:"A"},
+  {num:5,  texto:"El único profeta que fue enviado al extranjero.", correcta:"F"},
+  {num:6,  texto:"Su matrimonio ilustra la relación entre Israel y Dios.", correcta:"J"},
+  {num:7,  texto:"El profeta de Tecoa en Judá que profetizó en Samaria (Israel).", correcta:"B"},
+  {num:8,  texto:"Anunciaba la venida del “Día de Jehová”.", correcta:"E"},
+  {num:9,  texto:"Predijo el día de Pentecostés.", correcta:"E"},
+  {num:10, texto:"El justo por la fe vivirá.", correcta:"C"},
+  {num:11, texto:"Animaron a los judíos para continuar con la tarea de reconstruir el templo. (2 respuestas)", multi:true, correcta:"DL"},
+  {num:12, texto:"150 años después de Jonás, predijo la destrucción de Nínive.", correcta:"I"},
+  {num:13, texto:"El contemporáneo de Isaías en Jerusalén.", correcta:"H"},
+  {num:14, texto:"Predijo el nacimiento de Jesús en Belén.", correcta:"H"},
+  {num:15, texto:"Igual que Isaías pudo haber sido de sangre real.", correcta:"K"},
+  {num:16, texto:"El más largo de los profetas menores.", correcta:"L"},
+  {num:17, texto:"El libro más corto del Antiguo Testamento.", correcta:"A"},
+  {num:18, texto:"Predijo la venida de Elías antes del gran día de Jehová.", correcta:"G"},
+  {num:19, texto:"Los diezmos.", correcta:"G"},
+  {num:20, texto:"El último profeta.", correcta:"G"}
+];
+const contFrases = document.getElementById("frases-container");
+frases.forEach(f=>{
+  const div = document.createElement("div");
+  div.className = "frase-item";
+  div.id = `frase-${f.num}`;
+  if(f.multi){
+    const checks = PROFETAS.map(p=>`<label><input type="checkbox" name="p${f.num}_${p.l}"> ${p.l}. ${p.n}</label>`).join("");
+    div.innerHTML = `<div class="fila"><span class="num">${f.num}.</span><span class="texto">${f.texto}</span></div>
+      <div class="multi">${checks}</div>`;
+  } else {
+    const opts = PROFETAS.map(p=>`<option value="${p.l}">${p.l}. ${p.n}</option>`).join("");
+    div.innerHTML = `<div class="fila"><span class="num">${f.num}.</span><span class="texto">${f.texto}</span>
+      <select name="p${f.num}"><option value="">--</option>${opts}</select></div>`;
+  }
+  contFrases.appendChild(div);
+});
+
+/* ================== 21-32 PROFETAS EN ORDEN BÍBLICO ================== */
+const ordenBiblico = ["oseas","joel","amos","abdias","jonas","miqueas","nahum","habacuc","sofonias","hageo","zacarias","malaquias"];
+const gridProfetas = document.getElementById("profetas-grid");
+for(let i=0;i<12;i++){
+  const n = 21+i;
+  const div = document.createElement("div");
+  div.className = "profeta-fila";
+  div.innerHTML = `<span>${n}.</span><input type="text" name="p${n}" placeholder="Profeta">`;
+  gridProfetas.appendChild(div);
+}
+
+/* ================== UTILIDADES ================== */
+function normalizar(txt){
+  return (txt||"")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+
+/* ================== MODAL DE BIENVENIDA / BLOQUEO ================== */
+function verificarBloqueo(){
+  const guardado = localStorage.getItem(STORAGE_KEY);
+  if(guardado){
+    const estado = JSON.parse(guardado);
+    document.getElementById("mensaje-bloqueo").textContent =
+      `Este examen ya fue presentado por ${estado.nombre} con una puntuación de ${estado.puntuacion}. Solo puede realizarse una vez.`;
+    document.getElementById("modal-instrucciones").classList.add("oculto");
+    document.getElementById("modal-bloqueo").classList.remove("oculto");
+    return true;
+  }
+  return false;
+}
+
+function iniciarExamen(){
+  const nombre = document.getElementById("nombre").value.trim();
+  if(!nombre){ alert("Por favor ingresa tu nombre."); return; }
+
+  document.getElementById("nombre-impreso").textContent = "Nombre: " + nombre;
+  document.getElementById("modal-instrucciones").classList.add("oculto");
+  window.nombreAlumno = nombre;
+}
+
+function desbloquearExamen(){
+  const clave = document.getElementById('clave').value.trim();
+  if (clave === "59") {
+    localStorage.removeItem('examen13-profetas-menores');
+    location.reload();
+  } else {
+    alert("Clave incorrecta.");
+  }
+}
+
+verificarBloqueo();
+
+/* ================== CALCULAR EXAMEN ================== */
+function calcularExamen(){
+  const form = document.getElementById("form-examen");
+  let puntos = 0;
+  const maxPuntos = 35;
+
+  // 1-20 Frases
+  frases.forEach(f=>{
+    const cont = document.getElementById(`frase-${f.num}`);
+    cont.classList.remove("correcta","incorrecta");
+    let respuesta;
+    if(f.multi){
+      respuesta = PROFETAS.map(p=>p.l).filter(l => form.elements[`p${f.num}_${l}`].checked).join("");
+    } else {
+      respuesta = form.elements[`p${f.num}`].value;
+    }
+    if(respuesta === f.correcta){ puntos++; cont.classList.add("correcta"); }
+    else { cont.classList.add("incorrecta"); }
+  });
+
+  // 21-32 Profetas en orden bíblico
+  ordenBiblico.forEach((nombre, i)=>{
+    const el = form.elements[`p${21+i}`];
+    el.classList.remove("correcta","incorrecta");
+    if(normalizar(el.value) === nombre){ puntos++; el.classList.add("correcta"); }
+    else { el.classList.add("incorrecta"); }
+  });
+
+  // 33 Habacuc 2:4b ("mas el justo por su fe vivirá")
+  const elVerso = form.elements["p33"];
+  elVerso.classList.remove("correcta","incorrecta");
+  const verso = normalizar(elVerso.value);
+  if(verso.includes("justo") && verso.includes("fe") && verso.includes("vivira")){
+    puntos++; elVerso.classList.add("correcta");
+  } else {
+    elVerso.classList.add("incorrecta");
+  }
+
+  // Confirmaciones 34-35
+  ["p34","p35"].forEach(campo=>{
+    if(form.elements[campo].checked) puntos++;
+  });
+
+  const resultado = document.getElementById("resultado");
+  resultado.className = "ok";
+  resultado.style.display = "block";
+  resultado.textContent = `Puntuación: ${puntos} / ${maxPuntos}`;
+
+  const nombre = window.nombreAlumno || "Alumno";
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ nombre, puntuacion:`${puntos}/${maxPuntos}` }));
+
+  Array.from(form.elements).forEach(el=>el.disabled = true);
+
+  setTimeout(()=>window.print(), 400);
+}
+</script>
+
+</body>
+</html>
